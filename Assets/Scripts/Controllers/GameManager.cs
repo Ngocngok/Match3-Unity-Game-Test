@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     private LevelCondition m_levelCondition;
 
+    private eLevelMode m_currentLevelMode;
+
     private void Awake()
     {
         State = eStateGame.SETUP;
@@ -90,11 +92,13 @@ public class GameManager : MonoBehaviour
         {
             m_levelCondition = this.gameObject.AddComponent<LevelMoves>();
             m_levelCondition.Setup(m_gameSettings.LevelMoves, m_uiMenu.GetLevelConditionView(), m_boardController);
+            m_currentLevelMode = mode;
         }
         else if (mode == eLevelMode.TIMER)
         {
             m_levelCondition = this.gameObject.AddComponent<LevelTime>();
             m_levelCondition.Setup(m_gameSettings.LevelMoves, m_uiMenu.GetLevelConditionView(), this);
+            m_currentLevelMode = mode;
         }
 
         m_levelCondition.ConditionCompleteEvent += GameOver;
@@ -135,5 +139,21 @@ public class GameManager : MonoBehaviour
             Destroy(m_levelCondition);
             m_levelCondition = null;
         }
+    }
+
+    public void RestartCurrentLevel()
+    {
+        State = eStateGame.GAME_OVER;
+
+        if (m_levelCondition != null)
+        {
+            m_levelCondition.ConditionCompleteEvent -= GameOver;
+
+            Destroy(m_levelCondition);
+            m_levelCondition = null;
+        }
+
+        ClearLevel();
+        LoadLevel(m_currentLevelMode);
     }
 }
