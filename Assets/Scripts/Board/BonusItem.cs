@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static NormalItem;
 
 public class BonusItem : Item
 {
@@ -39,6 +40,20 @@ public class BonusItem : Item
         }
 
         return prefabname;
+    }
+
+
+    public override void SetView()
+    {
+        base.SetView();
+
+        switch (ItemType)
+        {
+            case eBonusType.ALL:
+                itemVisual.SetVisual(currentSkinSet.bonusItemSkins[0]);
+                break;
+        }
+
     }
 
     internal override bool IsSameType(Item other)

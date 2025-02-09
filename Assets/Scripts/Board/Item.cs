@@ -11,6 +11,14 @@ public class Item
 
     public Transform View { get; private set; }
 
+    protected ItemVisual itemVisual;
+
+    protected SkinSet currentSkinSet;
+
+    public void SetSkinSet(SkinSet skinSet)
+    {
+        currentSkinSet = skinSet;
+    }
 
     public virtual void SetView()
     {
@@ -18,10 +26,13 @@ public class Item
 
         if (!string.IsNullOrEmpty(prefabname))
         {
-            GameObject prefab = Resources.Load<GameObject>(prefabname);
+            ItemVisual prefab = Resources.Load<ItemVisual>(prefabname);
             if (prefab)
             {
-                View = GameObject.Instantiate(prefab).transform;
+                ItemVisual newItem = GameObject.Instantiate(prefab);
+                itemVisual = newItem;
+                View = newItem.transform;
+                
             }
         }
     }

@@ -32,7 +32,7 @@ public class BoardController : MonoBehaviour
 
     private bool m_gameOver;
 
-    public void StartGame(GameManager gameManager, GameSettings gameSettings)
+    public void StartGame(GameManager gameManager, GameSettings gameSettings, SkinConfig skinConfig)
     {
         m_gameManager = gameManager;
 
@@ -44,6 +44,7 @@ public class BoardController : MonoBehaviour
 
         m_board = new Board(this.transform, gameSettings);
 
+        m_board.SetSkinSet(skinConfig.GetSkinSet(gameSettings.SkinPackIndex));
         Fill();
     }
 

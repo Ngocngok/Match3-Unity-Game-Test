@@ -53,6 +53,37 @@ public class NormalItem : Item
         return prefabname;
     }
 
+    public override void SetView()
+    {
+        base.SetView();
+
+        switch (ItemType)
+        {
+            case eNormalType.TYPE_ONE:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[0]);
+                break;
+            case eNormalType.TYPE_TWO:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[1]);
+                break;
+            case eNormalType.TYPE_THREE:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[2]);
+                break;
+            case eNormalType.TYPE_FOUR:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[3]);
+                break;
+            case eNormalType.TYPE_FIVE:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[4]);
+                break;
+            case eNormalType.TYPE_SIX:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[5]);
+                break;
+            case eNormalType.TYPE_SEVEN:
+                itemVisual.SetVisual(currentSkinSet.normalItemSkins[6]);
+                break;
+        }
+
+    }
+
     internal override bool IsSameType(Item other)
     {
         NormalItem it = other as NormalItem;

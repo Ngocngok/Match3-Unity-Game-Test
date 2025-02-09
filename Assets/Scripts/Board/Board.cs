@@ -27,6 +27,8 @@ public class Board
 
     private int[] m_normalItemCount;
 
+    private SkinSet m_skinSet;
+
     public Board(Transform transform, GameSettings gameSettings)
     {
         m_root = transform;
@@ -39,6 +41,11 @@ public class Board
         m_cells = new Cell[boardSizeX, boardSizeY];
         m_normalItemCount = new int[Enum.GetNames(typeof(NormalItem.eNormalType)).Length];
         CreateBoard();
+    }
+
+    public void SetSkinSet(SkinSet skinSet)
+    {
+        m_skinSet = skinSet;
     }
 
     private void CreateBoard()
@@ -103,6 +110,7 @@ public class Board
                 }
 
                 item.SetType(Utils.GetRandomNormalTypeExcept(types.ToArray()));
+                item.SetSkinSet(m_skinSet);
                 item.SetView();
                 item.SetViewRoot(m_root);
 
@@ -228,6 +236,7 @@ public class Board
 
 
 
+                item.SetSkinSet(m_skinSet);
                 item.SetView();
                 item.SetViewRoot(m_root);
                 cell.Assign(item);
@@ -361,6 +370,7 @@ public class Board
                 cellToConvert = matches[rnd];
             }
 
+            item.SetSkinSet(m_skinSet);
             item.SetView();
             item.SetViewRoot(m_root);
 
