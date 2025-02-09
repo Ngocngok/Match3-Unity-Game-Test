@@ -409,7 +409,30 @@ public class Board
     {
         List<Cell> list = new List<Cell>();
 
-        for (int x = 0; x < boardSizeX; x++)
+        
+        //for (int x = 0; x < boardSizeX; x++)
+        //{
+        //    for (int y = 0; y < boardSizeY; y++)
+        //    {
+        //        Cell cell = m_cells[x, y];
+
+        //        var listhor = GetHorizontalMatches(cell);
+        //        if (listhor.Count >= m_matchMin)
+        //        {
+        //            list = listhor;
+        //            break;
+        //        }
+
+        //        var listvert = GetVerticalMatches(cell);
+        //        if (listvert.Count >= m_matchMin)
+        //        {
+        //            list = listvert;
+        //            break;
+        //        }
+        //    }
+        //}
+        
+        for (int x = boardSizeX - 1; x >= 0; x--)
         {
             for (int y = 0; y < boardSizeY; y++)
             {
@@ -418,15 +441,13 @@ public class Board
                 var listhor = GetHorizontalMatches(cell);
                 if (listhor.Count >= m_matchMin)
                 {
-                    list = listhor;
-                    break;
+                    return listhor;
                 }
 
                 var listvert = GetVerticalMatches(cell);
                 if (listvert.Count >= m_matchMin)
                 {
-                    list = listvert;
-                    break;
+                    return listvert;
                 }
             }
         }
@@ -604,6 +625,7 @@ public class Board
 
             if (result.Count > 0) break;
         }
+
 
         return result;
     }
