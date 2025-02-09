@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class BoardController : MonoBehaviour
 {
@@ -222,6 +223,7 @@ public class BoardController : MonoBehaviour
         for (int i = 0; i < matches.Count; i++)
         {
             matches[i].ExplodeItem();
+
         }
 
         if(matches.Count > m_gameSettings.MatchesMin)
@@ -303,4 +305,5 @@ public class BoardController : MonoBehaviour
 
         m_potentialMatch.Clear();
     }
+
 }
